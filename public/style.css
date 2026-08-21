@@ -151,23 +151,6 @@ body {
     text-decoration: underline;
 }
 
-.navbar form {
-    display: inline;
-}
-
-.navbar button.link-btn {
-    background: none;
-    border: none;
-    color: #2563eb;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 0;
-}
-
-.navbar button.link-btn:hover {
-    text-decoration: underline;
-}
-
 .auth-page {
     max-width: 400px;
 }
