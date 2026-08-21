@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('partials/navbar.html', { user: user }) %>
+    <main class="container">
+        <h1 class="page-title">Product List</h1>
+        <div class="product-grid">
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                    <div class="product-body">
+                        <h2 class="product-name"><%= product.name %></h2>
+                        <p class="product-price">$<%= product.price.toFixed(2) %></p>
+                        <a href="/products/<%= product.id %>" class="btn">View Detail</a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ចូលគណនី</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="container auth-page">
+        <h1 class="page-title">ចូលគណនី</h1>
+
+        <% if (error) { %>
+            <p class="form-error"><%= error %></p>
+        <% } %>
+
+        <form class="auth-form" method="POST" action="/login">
+            <label for="email">អ៊ីមែល</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">ពាក្យសម្ងាត់</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">ចូលគណនី</button>
+        </form>
+
+        <p class="auth-switch">មិនទាន់មានគណនី? <a href="/register">ចុះឈ្មោះ</a></p>
+    </main>
+</body>
+</html>

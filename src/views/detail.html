@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('partials/navbar.html', { user: user }) %>
+    <main class="container">
+        <a href="/" class="back-link">← Back</a>
+        <div class="detail-wrapper">
+            <img src="<%= product.image %>" alt="<%= product.name %>" class="detail-image">
+            <div class="detail-body">
+                <h1 class="detail-name"><%= product.name %></h1>
+                <p class="detail-price">$<%= product.price.toFixed(2) %></p>
+                <p class="detail-description-label">information:</p>
+                <p class="detail-description"><%= product.description %></p>
+                <button class="btn btn-wide">Buy Now</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
