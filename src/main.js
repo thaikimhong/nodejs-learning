@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const connectDB = require('./database/mongodb');
 const User = require('./models/User');
@@ -12,6 +13,18 @@ app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+    secret: 'practice-lab-secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day
+}));
+
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
 
 app.get('/', (req, res) => {
     res.render('index', { products });
@@ -59,10 +72,17 @@ app.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.render('login', { error: 'Invalid email or password' });
         }
+        req.session.user = { id: user._id, username: user.username, email: user.email };
         res.redirect('/');
     } catch (err) {
         res.render('login', { error: 'Something went wrong, please try again' });
     }
+});
+
+app.post('/logout', (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/');
+    });
 });
 
 connectDB().then(() => {

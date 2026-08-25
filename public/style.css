@@ -134,12 +134,24 @@ body {
 
 .navbar {
     display: flex;
-    justify-content: flex-end;
-    gap: 16px;
+    justify-content: space-between;
     align-items: center;
     padding: 12px 24px;
     border-bottom: 1px solid #e5e7eb;
     font-size: 14px;
+}
+
+.navbar-logo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a1a !important;
+    text-decoration: none;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
 }
 
 .navbar a {
@@ -148,6 +160,25 @@ body {
 }
 
 .navbar a:hover {
+    text-decoration: underline;
+}
+
+.navbar form {
+    display: inline;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    color: #2563eb;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    padding: 0;
+    text-decoration: none;
+}
+
+.link-btn:hover {
     text-decoration: underline;
 }
 

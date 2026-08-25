@@ -1,11 +1,12 @@
 {
   "name": "practice",
   "version": "1.0.0",
-  "author": "Thai Bunhong",
+  "author": "thai-bunhong",
   "description": "",
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
+    "start:debug": "node --inspect src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
     "bcryptjs": "^3.0.3",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "mongoose": "^9.9.3"
   }
 }
