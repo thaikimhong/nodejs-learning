@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="km">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ចុះឈ្មោះ</title>
+    <title>Register</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <main class="container auth-page">
-        <h1 class="page-title">ចុះឈ្មោះ</h1>
+        <h1 class="page-title">Register</h1>
 
         <% if (error) { %>
             <p class="form-error"><%= error %></p>
         <% } %>
 
         <form class="auth-form" method="POST" action="/register">
-            <label for="username">ឈ្មោះអ្នកប្រើ</label>
+            <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
 
-            <label for="email">អ៊ីមែល</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="password">ពាក្យសម្ងាត់</label>
+            <label for="password">Password</label>
             <input type="password" id="password" name="password" required minlength="6">
 
-            <button type="submit" class="btn">ចុះឈ្មោះ</button>
+            <button type="submit" class="btn">Register</button>
         </form>
 
-        <p class="auth-switch">មានគណនីរួចហើយ? <a href="/login">ចូលគណនី</a></p>
+        <p class="auth-switch">Already have an account? <a href="/login">Login</a></p>
     </main>
 </body>
 </html>

@@ -1,11 +1,14 @@
 <nav class="navbar">
-    <% if (user) { %>
-        <span>សួស្តី <%= user.username %></span>
-        <form method="POST" action="/logout">
-            <button type="submit" class="link-btn">ចាកចេញ</button>
-        </form>
-    <% } else { %>
-        <a href="/login">ចូលគណនី</a>
-        <a href="/register">ចុះឈ្មោះ</a>
-    <% } %>
+    <a href="/" class="navbar-logo">Practice Lab</a>
+    <div class="navbar-links">
+        <% if (user) { %>
+            <span>Hi, <%= user.username %></span>
+            <form method="POST" action="/logout">
+                <button type="submit" class="link-btn">Logout</button>
+            </form>
+        <% } else { %>
+            <a href="/login" class="link-btn">Login</a>
+            <a href="/register" class="link-btn">Register</a>
+        <% } %>
+    </div>
 </nav>

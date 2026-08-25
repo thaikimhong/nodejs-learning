@@ -33,7 +33,6 @@ app.get('/', (req, res) => {
 app.get('/products/:id', (req, res) => {
     const productId = parseInt(req.params.id);
     const product = products.find(p => p.id === productId);
-
     if (product) {
         res.render('detail', { product });
     } else {
@@ -44,51 +43,41 @@ app.get('/products/:id', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register', { error: null });
 });
-
 app.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
-
     try {
         const existing = await User.findOne({ email });
         if (existing) {
-            return res.render('register', { error: 'អ៊ីមែលនេះមានអ្នកប្រើរួចហើយ' });
+            return res.render('register', { error: 'This email is already registered' });
         }
-
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await User.create({ username, email, password: hashedPassword });
-
-        req.session.user = { id: user._id, username: user.username, email: user.email };
-        res.redirect('/');
+        await User.create({ username, email, password: hashedPassword });
+        res.redirect('/login');
     } catch (err) {
-        res.render('register', { error: 'មានបញ្ហាកើតឡើង សូមព្យាយាមម្តងទៀត' });
+        res.render('register', { error: 'Something went wrong, please try again' });
     }
 });
 
 app.get('/login', (req, res) => {
     res.render('login', { error: null });
 });
-
-app.post('/login', 
-    async (req, res) => {
-        const { email, password } = req.body;
-        try {
-            const user = await User.findOne({ email });
-            if (!user) {
-                return res.render('login', { error: 'អ៊ីមែល ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ' });
-            }
-
-            const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) {
-                return res.render('login', { error: 'អ៊ីមែល ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ' });
-            }
-
-            req.session.user = { id: user._id, username: user.username, email: user.email };
-            res.redirect('/');
-        } catch (err) {
-            res.render('login', { error: 'មានបញ្ហាកើតឡើង សូមព្យាយាមម្តងទៀត' });
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.render('login', { error: 'Invalid email or password' });
         }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.render('login', { error: 'Invalid email or password' });
+        }
+        req.session.user = { id: user._id, username: user.username, email: user.email };
+        res.redirect('/');
+    } catch (err) {
+        res.render('login', { error: 'Something went wrong, please try again' });
     }
-);
+});
 
 app.post('/logout', (req, res) => {
     req.session.destroy(() => {

@@ -1,11 +1,12 @@
 {
   "name": "practice",
   "version": "1.0.0",
-  "author": "Thai Bunhong",
+  "author": "thai-bunhong",
   "description": "",
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
+    "start:debug": "node --inspect src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
