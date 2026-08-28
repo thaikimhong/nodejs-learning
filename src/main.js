@@ -18,7 +18,7 @@ app.use(session({
     secret: 'practice-lab-secret',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
 app.use((req, res, next) => {
@@ -85,8 +85,10 @@ app.post('/logout', (req, res) => {
     });
 });
 
+const PORT = process.env.PORT || 3011;
+
 connectDB().then(() => {
-    app.listen(3000, () => {
-        console.log('http://localhost:3000');
+    app.listen(PORT, () => {
+        console.log(`http://localhost:${PORT}`);
     });
 });
