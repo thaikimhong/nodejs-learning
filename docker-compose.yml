@@ -1,10 +1,25 @@
 services:
+  app:
+    build: .
+    container_name: practice-app
+    restart: unless-stopped
+    ports:
+      # host 3011 -> container 3011 (must match PORT and Dockerfile EXPOSE)
+      - "3011:3011"
+    environment:
+      PORT: 3011
+      # "mongodb" = the service name below; container port is always 27017
+      MONGO_URI: mongodb://admin:admin123@mongodb:27017/practice?authSource=admin
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo:latest
     container_name: nodeJS-mongodb
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      # host 27323 -> container 27017 (mongod always listens on 27017)
+      - "27323:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin123
@@ -16,7 +31,8 @@ services:
     container_name: practice-mongo-express
     restart: unless-stopped
     ports:
-      - "8081:8081"
+      # host 1011 -> container 8081 (mongo-express listens on 8081)
+      - "1011:8081"
     environment:
       ME_CONFIG_MONGODB_SERVER: mongodb
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
