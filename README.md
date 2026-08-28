@@ -20,7 +20,7 @@ A small Express + EJS + MongoDB practice app (product list, product detail, regi
 No Node, no `npm install` — Docker builds and runs the app for you.
 
 ```bash
-git clone <repo-url>
+git clone git@github.com:thaikimhong/nodejs-learning.git
 cd practice
 docker compose up -d --build
 ```
